@@ -1,0 +1,19 @@
+services:
+  app:
+    build: .
+    container_name: chat_financiero_app
+    # Mapear el directorio actual al contenedor para reflejar cambios en el código
+    # y no tener que copiar vectordb.sqlite pesado a la imagen
+    volumes:
+      - .:/app
+    # Configuración para habilitar la GPU (necesario para cuda)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
+    # Mantener el contenedor interactivo (para el input del chat)
+    stdin_open: true # Permite la entrada estándar
+    tty: true # Asigna un pseudo-TTY
