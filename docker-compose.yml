@@ -17,3 +17,4 @@ services:
     # Mantener el contenedor interactivo (para el input del chat)
     stdin_open: true # Permite la entrada estándar
     tty: true # Asigna un pseudo-TTY
+    command: python completev2.py
